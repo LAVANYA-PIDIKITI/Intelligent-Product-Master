@@ -63,8 +63,8 @@ app.post('/api/issues', async (req, res) => {
     });
     res.json({ statuscode: 200});
   } catch (error) {
-    console.error('Error creating issue:', error.response);
-    res.json(error.response);
+    console.error('Error creating issue:', error);
+    res.json(error);
   }
 });
 
@@ -89,10 +89,10 @@ app.put('/api/issues/:issueId', async (req, res) => {
       }
     });
 
-    res.json(response);
+    res.json({ statuscode: 201});
   } catch (error) {
-    console.error( error.response);
-    res.json(error.response);
+    console.error( error);
+    res.json(error);
   }
 });
 
@@ -108,10 +108,10 @@ app.get('/api/issues/:issueId', async (req, res) => {
       }
     });
 
-    res.json(response);
+    res.json(response.data);
   } catch (error) {
-    console.error('Error getting issue details:', error.response);
-    res.json(error.response);
+    console.error('Error getting issue details:', error);
+    res.json(error);
   }
 });
 
@@ -128,8 +128,8 @@ app.delete('/api/issues/:issueId', async (req, res) => {
 
     res.json({ statuscode: 204});
   } catch (error) {
-    console.error('Error deleting issue:', error.response);
-    res.json(error.response);
+    console.error('Error deleting issue:', error);
+    res.json(error);
   }
 });
 
@@ -162,10 +162,10 @@ app.get('/api/projects/:projectId', async (req, res) => {
       }
     });
 
-    res.json(response);
+    res.json(response.data);
   } catch (error) {
-    console.error('Error getting project details:', error.response);
-    res.json(error.response);
+    console.error('Error getting project details:', error);
+    res.json(error);
   }
 });
 
@@ -190,8 +190,8 @@ app.post('/api/projects', async (req, res) => {
 
     res.json(response);
   } catch (error) {
-    console.error('Error creating project:', error.response);
-    res.json(error.response);
+    console.error('Error creating project:', error);
+    res.json(error);
   }
 });
 
@@ -214,8 +214,8 @@ app.put('/api/projects/:projectId', async (req, res) => {
 
     res.json(response);
   } catch (error) {
-    console.error('Error updating project details:', error.response);
-    res.json(error.response);
+    console.error('Error updating project details:', error);
+    res.json(error);
   }
 });
 
@@ -233,8 +233,8 @@ app.delete('/api/projects/:projectId', async (req, res) => {
 
     res.json({ message: 'Project deleted successfully' });
   } catch (error) {
-    console.error('Error deleting project:', error.response);
-    res.json(error.response);
+    console.error('Error deleting project:', error);
+    res.json(error);
   }
 });
 
@@ -250,10 +250,10 @@ app.get('/api/issues/:issueId/transitions', async (req, res) => {
       }
     });
 
-    res.json(response);
+    res.json(response.data);
   } catch (error) {
-    console.error('Error getting available transitions for an issue:', error.response);
-    res.json(error.response);
+    console.error('Error getting available transitions for an issue:', error);
+    res.json(error);
   }
 });
 
@@ -277,8 +277,8 @@ app.post('/api/issues/:issueId/transitions', async (req, res) => {
 
     res.json(response);
   } catch (error) {
-    console.error('Error transitioning issue to a different status:', error.response);
-    res.json(error.response);
+    console.error('Error transitioning issue to a different status:', error);
+    res.json(error);
   }
 });
 
@@ -312,10 +312,10 @@ app.get('/api/users/search/:query', async (req, res) => {
       }
     });
 
-    res.json(response);
+    res.json(response.data);
   } catch (error) {
-    console.error('Error searching for users:', error.response);
-    res.json(error.response);
+    console.error('Error searching for users:', error);
+    res.json(error);
   }
 });
 
