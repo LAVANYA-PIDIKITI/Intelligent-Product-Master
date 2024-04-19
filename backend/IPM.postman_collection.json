@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/issues",
+					"raw": "http://127.0.0.1:3000/api/issues/KAN",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -23,7 +23,8 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"issues"
+						"issues",
+						"KAN"
 					]
 				}
 			},
@@ -36,7 +37,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"projectKey\": \"KAN\",\r\n    \"issueType\": \"10001\",\r\n    \"summary\": \"Example Bug\",\r\n    \"description\": {\r\n        \"type\": \"doc\",\r\n        \"version\": 1,\r\n        \"content\": [\r\n            {\r\n                \"type\": \"paragraph\",\r\n                \"content\": [\r\n                    {\r\n                        \"type\": \"text\",\r\n                        \"text\": \"This is an example bug description.\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}\r\n",
+					"raw": "{\r\n    \"projectKey\": \"KAN\",\r\n    \"issueType\": \"10200\",\r\n    \"summary\": \" hi\",\r\n    \"description\": {\r\n        \"type\": \"doc\",\r\n        \"version\": 1,\r\n        \"content\": [\r\n            {\r\n                \"type\": \"paragraph\",\r\n                \"content\": [\r\n                    {\r\n                        \"type\": \"text\",\r\n                        \"text\": \"This is an example bug description.\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -143,7 +144,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/issues/10001",
+					"raw": "http://127.0.0.1:3000/api/issues/10000",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -155,7 +156,7 @@
 					"path": [
 						"api",
 						"issues",
-						"10001"
+						"10000"
 					],
 					"query": [
 						{
@@ -346,7 +347,24 @@
 			"name": "get available transitions for an issue",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/issues/10008/transitions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"issues",
+						"10008",
+						"transitions"
+					]
+				}
 			},
 			"response": []
 		},
@@ -379,6 +397,120 @@
 						"issues",
 						"10008",
 						"transitions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/users/61599a19198b4f00685430bd",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"61599a19198b4f00685430bd"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "get user permissions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/users/BROWSE_PROJECTS%2CEDIT_ISSUES%2CADD_COMMENTS/permissions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"BROWSE_PROJECTS%2CEDIT_ISSUES%2CADD_COMMENTS",
+						"permissions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "stackoverflow",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/search/unable to connect to server for Postgres",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"search",
+						"unable to connect to server for Postgres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all prokjects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/projects",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"projects"
 					]
 				}
 			},
