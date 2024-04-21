@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<div class="d-flex">
+  <div class="sidebar col-md-2">
+    <app-sidenav></app-sidenav>
+  </div>
+  <div class="container ml-2 mr-2">
+    <div class="content col-md-12">
+      <div class="mt-4">
+        <div class="mb-3">
+          <input type="text" class="form-control" placeholder="Enter your search query..." [(ngModel)]="query">
+        </div>
+        <button class="btn btn-primary" (click)="searchQuery()">Search</button>
+      
+        <div *ngIf="answers.length > 0" class="mt-4">
+          <h3>Stack Overflow Answers</h3>
+          
+          <!-- Pagination Controls -->
+          <div class="pagination mt-3">
+            <button class="btn btn-sm btn-secondary" (click)="changePage(1)">Page 1</button>
+            <button class="btn btn-sm btn-secondary" (click)="changePage(2)">Page 2</button>
+            <button class="btn btn-sm btn-secondary" (click)="changePage(3)">Page 3</button>
+          </div>
+
+          <!-- Display Cards based on Page -->
+          <div *ngFor="let answer of getAnswersForPage(currentPage)" class="card mt-3">
+            <div class="card-body d-flex align-items-center">
+              <img [src]="answer.profileimage" alt="Profile Image" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+              <div>
+                <h5 class="card-title">{{ answer.ownerName }}</h5>
+                <p class="card-text" [innerHTML]="answer.answer"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- No answers found message -->
+        <div *ngIf="answers.length === 0 && query" class="mt-4">
+          No answers found for '{{ query }}'.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

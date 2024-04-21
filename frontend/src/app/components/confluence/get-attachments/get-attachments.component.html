@@ -1,0 +1,36 @@
+
+  <div class="container mt-3 p-2">
+    <div *ngIf="isLoading; else content">
+        Loading attachments...
+      </div>
+      
+      <ng-template #content>
+        <h2>Attachments</h2>
+      
+        <div *ngIf="attachments.length > 0; else noAttachments" class="row attachment-row">
+          <div class="col-md-4" *ngFor="let attachment of attachments">
+            <div class="attachment-card mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ attachment.title }}</h5>
+                  <p class="card-text"><strong>Attachment ID:</strong> {{ attachment.id }}</p>
+                  <p class="card-text"><strong>Created At:</strong> {{ attachment.createdAt | date }}</p>
+                  <p class="card-text"><strong>Media Type:</strong> {{ attachment.mediaType }}</p>
+                  <p class="card-text"><strong>Status:</strong> {{ attachment.status }}</p>
+                  <p class="card-text"><strong>Page ID:</strong> {{ attachment.pageId }}</p>
+                  <p class="card-text"><strong>Author ID:</strong> {{ attachment.version.authorId }}</p>
+                  <p class="card-text"><strong>Comment:</strong> {{ attachment.comment || 'No comment' }}</p>
+                  <a href="{{ attachment._links.download }}" class="btn btn-primary" target="_blank">Download</a>
+                  <a href="{{ attachment._links.webui }}" class="btn btn-secondary" target="_blank">View in Confluence</a>
+                  <button class="btn btn-danger" (click)="deleteAttachment(attachment.id)">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <ng-template #noAttachments>
+          <p>No attachments available.</p>
+        </ng-template>
+      </ng-template>
+  </div>

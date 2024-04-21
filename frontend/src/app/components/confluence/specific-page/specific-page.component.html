@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="form-group">
+      <label for="pageIdInput">Enter Page ID:</label>
+      <input type="text" class="form-control" id="pageIdInput" [(ngModel)]="pageId">
+    </div>
+    <button class="btn btn-primary" (click)="fetchPageDetails()">Fetch Page Details</button>
+  
+    <div *ngIf="selectedPage" class="card mt-3">
+      <div class="card-header">
+        <strong>Page ID:</strong> {{ selectedPage.id }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ selectedPage.title }}</h5>
+        <p><strong>Created By:</strong> {{ selectedPage.authorId }}</p>
+        <p><strong>Created At:</strong> {{ selectedPage.createdAt | date }}</p>
+        <!-- Additional details as needed -->
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Create Comment</h2>
+    <div class="form-group">
+      <label for="pageIdInput">Page ID:</label>
+      <input type="text" class="form-control" id="pageIdInput" [(ngModel)]="newComment.pageId">
+    </div>
+    <div class="form-group">
+      <label for="commentInput">Comment:</label>
+      <textarea class="form-control" id="commentInput" [(ngModel)]="newComment.comment"></textarea>
+    </div>
+    <button class="btn btn-primary" (click)="onCreateComment()">Create Comment</button>
+  </div>
+  

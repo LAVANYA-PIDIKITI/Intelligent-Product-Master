@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>
+
+<div class="d-flex">
+  <div class="sidebar col-md-2">
+    <app-sidenav></app-sidenav>
+  </div>
+
+  <div class="content">
+    <div class="card-container mx-auto mt-3 mr-3 ml-3 mb-3 p-3">
+      <div class="row">
+        <!-- Loop through pages and display cards -->
+        <div class="col-md-4" *ngFor="let page of pages">
+          <div class="card shadow mb-3" (click)="openIssueModal(page, modalTemplate)">
+            <div class="card-header text-dark">
+              <strong>Page ID:</strong> {{ page.id }}
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                <p><strong>Title:</strong> {{ page.title }}</p>
+                <p><strong>Created By:</strong> {{ page.authorId }}</p>
+                <p><strong>Created At:</strong> {{ page.createdAt | date }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Template -->
+    <ng-template #modalTemplate>
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ selectedPage?.title }} - Page Details</h5>
+            <button type="button" class="close bg-danger text-white" aria-label="Close" (click)="closeModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Displaying details -->
+            <div *ngIf="!editing">
+              <div class="form-group">
+                <label for="displayTitle">Title:</label>
+                <p class="form-control-static" id="displayTitle">{{ selectedPage?.title }}</p>
+              </div>
+              <!-- Display content only when not editing -->
+              <div *ngIf="!editing" class="form-group">
+                <label for="displayContent">Content:</label>
+                <p class="form-control-static" id="displayContent">{{ selectedPage?.content }}</p>
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-primary" (click)="toggleEditing()">Edit</button>
+                <button class="btn btn-danger ml-2" (click)="deletePage()">Delete</button>
+              </div>
+            </div>
+    
+            <!-- Editing mode -->
+            <div *ngIf="editing">
+              <div class="form-group">
+                <label for="editedTitle">Title:</label>
+                <input type="text" class="form-control" id="editedTitle" [(ngModel)]="editedTitle" placeholder="Enter title">
+              </div>
+              <div class="form-group">
+                <label for="editedContent">Content:</label>
+                <textarea class="form-control" id="editedContent" rows="6" [(ngModel)]="editedContent" placeholder="Enter content"></textarea>
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-primary" (click)="savePage()">Save</button>
+                <button class="btn btn-secondary ml-2" (click)="cancelEditing()">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

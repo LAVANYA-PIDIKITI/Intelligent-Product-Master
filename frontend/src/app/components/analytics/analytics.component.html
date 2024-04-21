@@ -1,0 +1,105 @@
+<app-navbar></app-navbar> <br>
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div class="sidebar col-md-2" [ngClass]="{ 'sidebar-hidden': sidebarHidden }">
+      <app-sidenav></app-sidenav>
+    </div>
+  
+    <!-- Content Area -->
+    <div class="content col-md-10" [ngClass]="{ 'content-expanded': sidebarHidden }">
+      <div class="container">
+        <!-- First Row of Cards -->
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div class="card-title">Area Chart | Project Activity in Jira</div>
+              </div>
+              <div class="card-body">
+                <app-areachart></app-areachart>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div class="card-title">Heatmap | Knowledge mining-List of commits</div>
+              </div>
+              <div class="card-body">
+                <app-heatmap></app-heatmap>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Second Row of Cards -->
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div class="card-title">Bar Chart | Progress</div>
+              </div>
+              <div class="card-body">
+                <app-barchart></app-barchart>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div class="card-title">Line Chart | Feature Development Over Time</div>
+              </div>
+              <div class="card-body">
+                <app-linechart></app-linechart>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div class="card-title">Column Chart</div>
+              </div>
+              <div class="card-body">
+                <app-columnchart></app-columnchart>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Third Row of Cards -->
+        <div class="row">
+          <div class="col-md-2 mb-4">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div class="card-title">Pie Chart | Work Distribution</div>
+              </div>
+              <div class="card-body">
+                <app-piechart></app-piechart>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 mb-4">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div class="card-title">Spline Chart | Bugs fixed</div>
+              </div>
+              <div class="card-body">
+                <app-splinechart></app-splinechart>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 mb-4">
+            <div class="card chart-card">
+              <div class="card-header">
+                <div class="card-title">Pareto Chart | Common Issues Across Jira, Confluence, and Bitbucket</div>
+              </div>
+              <div class="card-body">
+                <app-pareto></app-pareto>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-header custom-header">
+    Issue Status Overview
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+        <h5>Todo Issues</h5>
+        <p>Total: <strong>{{ todoCount }}</strong></p>
+        <div class="progress mt-1">
+          <div class="progress-bar bg-danger" [style.width.%]="todoProgress"></div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <h5>In Progress Issues</h5>
+        <p>Total: <strong>{{ inProgressCount }}</strong></p>
+        <div class="progress mt-1">
+          <div class="progress-bar bg-warning" [style.width.%]="inProgressProgress"></div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <h5>Done Issues</h5>
+        <p>Total: <strong>{{ doneCount }}</strong></p>
+        <div class="progress mt-1">
+          <div class="progress-bar bg-success" [style.width.%]="doneProgress"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

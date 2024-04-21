@@ -1,0 +1,23 @@
+<div class="row">
+  <!-- Display cards for each priority count -->
+  <div class="col-md-2 mb-3" *ngFor="let priorityCount of priorityCounts">
+    <div class="card hi">
+      <div class="card-body">
+        <h5>{{ priorityCount.priority }} Priority Issues</h5>
+        <p class="card-text">Total Count: {{ priorityCount.count }}</p>
+        <!-- You can add more details or customize the card body as needed -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Display card for total issues count -->
+  <div class="col-md-2 mb-3">
+    <div class="card hi">
+      <div class="card-body">
+        <h5>Total Issues</h5>
+        <p class="card-text">Total Count: {{ totalIssuesCount }}</p>
+        <!-- You can add more details or customize the card body as needed -->
+      </div>
+    </div>
+  </div>
+</div>

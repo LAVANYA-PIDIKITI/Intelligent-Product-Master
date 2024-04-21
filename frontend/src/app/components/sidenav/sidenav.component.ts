@@ -6,9 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent {
-  isSidebarOpen = false;
+  isSidebarOpen = true;
 
-  toggleSidebar() {
-    this.isSidebarOpen = !this.isSidebarOpen;
-  }
 }

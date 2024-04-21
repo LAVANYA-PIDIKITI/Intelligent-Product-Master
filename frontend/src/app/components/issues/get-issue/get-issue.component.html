@@ -1,0 +1,90 @@
+
+      
+  <app-navbar></app-navbar>
+
+  <div class="d-flex">
+    <div class="sidebar col-md-2" >
+      <app-sidenav></app-sidenav>
+    </div>
+    
+    <div class="content" >
+
+      <div class="card-container mx-auto mt-3 mr-3 ml-3 mb-3 p-3">
+        <div *ngFor="let issue of issues" class="card shadow" (click)="openIssueModal(issue, modalTemplate)">
+          <div class="card-header text-dark">
+            <strong>Issue Key:</strong> {{ issue.key }}
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <p><strong>Issue Name:</strong> {{ issue.fields.summary }}</p>
+              <p><strong>Issue Type:</strong> {{ issue.fields.issuetype.name }}</p>
+              <p><strong>Priority:</strong> {{ issue.fields.priority.name }}</p>
+              <p><strong>Assignee:</strong> {{ issue.fields.assignee?.displayName || 'Unassigned' }}</p>
+              <p><strong>Reporter:</strong> {{ issue.fields.reporter.displayName }}</p>
+              <p><strong>Time Spent:</strong> {{ issue.fields.timespent || 'Not spent yet' }}</p>
+              <p class="status-text" [ngClass]="{
+                'text-success': issue.fields.status.name === 'Done',
+                'text-warning': issue.fields.status.name === 'In Progress',
+                'text-danger': issue.fields.status.name === 'To Do'
+              }">
+                <strong>Status:</strong> {{ issue.fields.status.name }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <ng-template #modalTemplate>
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{ selectedIssue?.key }} - Issue Details</h5>
+              <!-- Style the close button as bg-danger and position it in the top-right corner -->
+              <button type="button" class="close bg-danger text-white" aria-label="Close" style="position: absolute; top: 0; right: 0;" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <p><strong>Issue ID:</strong> {{ selectedIssue?.id }}</p>
+                  <p><strong>Issue Type:</strong> {{ selectedIssue?.fields?.issuetype?.name }}</p>
+                  <p><strong>Priority:</strong> {{ selectedIssue?.fields?.priority?.name }}</p>
+                  <p><strong>Assignee:</strong> {{ selectedIssue?.fields?.assignee?.displayName || 'Unassigned' }}</p>
+                  <p><strong>Reporter:</strong> {{ selectedIssue?.fields?.reporter?.displayName }}</p>
+                  <p><strong>Time Spent:</strong> {{ selectedIssue?.fields?.timespent || 'Not spent yet' }}</p>
+                  <p><strong>Status:</strong> {{ selectedIssue?.fields?.status?.name }}</p>
+                </div>
+                <div class="col-md-6">
+                  <p><strong>Created:</strong> {{ selectedIssue?.fields?.created | date: 'medium' || 'N/A' }}</p>
+                  <p><strong>Updated:</strong> {{ selectedIssue?.fields?.updated | date: 'medium' || 'N/A' }}</p>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <p><strong>Description:</strong></p>
+                  <!-- Use ngIf to conditionally render an editable textarea for description -->
+                  <ng-container *ngIf="editingDescription; else viewDescription">
+                    <textarea class="form-control" rows="5" [(ngModel)]="editedDescription"></textarea>
+                    <button class="btn btn-primary mt-3" (click)="saveDescription()">Save</button>
+                    <button class="btn btn-secondary mt-3 ml-2" (click)="cancelEdit()">Cancel</button>
+                  </ng-container>
+                  <ng-template #viewDescription>
+                    <p>{{ selectedIssue?.fields?.description?.content[0]?.content[0]?.text || 'No description available' }}</p>
+                    <!-- Display edit and delete buttons -->
+                    <button class="btn btn-primary" (click)="startEditingDescription()">Edit</button>
+                    <button class="btn btn-danger ml-2" (click)="deleteIssue()">Delete</button>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      
+    </div>
+  </div>
+  
+  
+  
+  

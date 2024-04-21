@@ -1,0 +1,75 @@
+@import url('https://unpkg.com/ag-grid-community@28.2.0/styles/ag-grid.css');
+@import url('https://unpkg.com/ag-grid-community@28.2.0/styles/ag-theme-alpine.css');
+.header {
+    background-color: #11101D; /* Background color */
+    color: #fff; /* Text color (white) */
+    text-align: center; /* Center-align text */
+    padding: 20px 0; /* Padding (top and bottom) */
+  }
+  .header h1 {
+    margin: 0; /* Remove default margin for clean layout */
+  }
+  .container {
+    display: flex;
+  }
+  
+  .sidebar {
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    padding: 20px;
+  }
+  
+  .content {
+    flex: 1; /* Allow content area to grow and fill remaining space */
+    padding: 20px;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .chart-card {
+    height: 100%; /* Ensure chart cards fill available space */
+  }
+  
+  .chart-card {
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    padding: 16px;
+  }
+  
+  /* Responsive adjustments */
+  @media (min-width: 768px) {
+    .card-container .col-md-4 {
+      flex: 0 0 33.33%; /* Each column occupies 33.33% width on medium screens and larger */
+      max-width: 33.33%;
+    }
+    
+    .card-container .col-md-3 {
+      flex: 0 0 25%; /* Pie Chart column occupies 25% width on medium screens and larger */
+      max-width: 25%;
+    }
+    
+    .card-container .col-md-9 {
+      flex: 0 0 75%; /* Spline Chart column occupies 75% width on medium screens and larger */
+      max-width: 75%;
+    }
+  }

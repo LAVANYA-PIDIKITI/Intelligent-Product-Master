@@ -1,0 +1,87 @@
+/* Styling for the grid container */
+/* Custom CSS to override the card header background color */
+.custom-header {
+  background-color: #11101D !important;
+  color: white; /* Set text color to white for contrast */
+}
+
+.ag-theme-custom {
+    height: 400px; /* Set a fixed height for the grid container */
+    width: 100%; /* Ensure the grid fills the available width */
+  }
+  
+  /* Styling for grid headers */
+  .ag-header-cell {
+    background-color: #f5f5f5; /* Light gray background for header cells */
+    font-weight: bold; /* Make header text bold */
+  }
+  
+  /* Styling for grid rows */
+  .ag-row {
+    font-size: 14px; /* Set font size for row content */
+  }
+  
+  /* Styling for odd-numbered rows */
+  .ag-row-odd {
+    background-color: #f9f9f9; /* Alternate row background color */
+  }
+  
+  /* Styling for hover effect on rows */
+  .ag-row-hover {
+    background-color: #eaeaea; /* Light gray background on row hover */
+  }
+  
+  /* Styling for cell content */
+  .ag-cell {
+    padding: 8px; /* Add padding inside grid cells */
+  }
+  
+  /* Styling for progress bar in cells */
+  .ag-cell .progress {
+    height: 8px; /* Set height of progress bar */
+    margin-top: 4px; /* Add top margin for spacing */
+  }
+  
+  /* Styling for active users */
+  .ag-cell-active {
+    color: green; /* Display active users in green */
+  }
+  
+  /* Styling for inactive users */
+  .ag-cell-inactive {
+    color: red; /* Display inactive users in red */
+  }
+  
+  /* Card Styles */
+.card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    margin-bottom: 20px; /* Space between cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add box shadow for depth */
+  }
+  
+  .card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #007bff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    color: #fff;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  /* Ag-Grid Theme */
+  .ag-theme-alpine {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 0.75rem;
+    }
+  }
+  
