@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "89ef8371-9e28-421e-a47b-0165b429ceb4",
+		"name": "bitbucket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17893004"
+	},
+	"item": [
+		{
+			"name": "area chart",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/issues-created-over-time/KAN",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"issues-created-over-time",
+						"KAN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bar chart",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/sprint-progress/6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"sprint-progress",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "heatmap",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/heatmap/KAN",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"heatmap",
+						"KAN"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "line chart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/version-release-trends/KAN",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"version-release-trends",
+						"KAN"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
