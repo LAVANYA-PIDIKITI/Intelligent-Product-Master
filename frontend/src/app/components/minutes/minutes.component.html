@@ -11,7 +11,7 @@
             <br>
             <h4>Record the minutes of the meeting</h4>
             <p>Please upload the meeting file here</p>
-            <app-file-upload></app-file-upload>
+            <app-file-upload (fileSelected)="onFileSelected($event)"></app-file-upload>
             <app-audio-track [audioSrc]="audioUrl"></app-audio-track>
             <div *ngIf="meetingMinutes">
               <h2>Meeting Minutes</h2>
