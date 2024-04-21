@@ -121,6 +121,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "column chart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3000/bug-resolution-time/AG",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"bug-resolution-time",
+						"AG"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pie chart",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
