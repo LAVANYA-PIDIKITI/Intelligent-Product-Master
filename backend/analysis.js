@@ -233,6 +233,127 @@ app.get('/version-release-trends/:projectId', async (req, res) => {
     }
 });
 
+const fetchIssueData = async (projectId) => {
+    try {
+        const response = await axios.get(`${JIRA_API_BASE_URL}/search`, {
+            params: {
+                jql: `project = ${projectId} AND type = Bug`,
+                maxResults: 1000, // Adjust as needed
+                fields: 'created,resolutiondate',
+            },
+            auth: {
+                username: USERNAME,
+                password: API_TOKEN,
+            },
+        });
+
+        return response.data.issues;
+    } catch (error) {
+        console.error('Error fetching issue data from Jira:', error);
+        throw error;
+    }
+};
+
+// Function to calculate resolution time for bugs
+const calculateResolutionTime = (issues) => {
+    return issues.map(issue => {
+        const createdDate = new Date(issue.fields.created);
+        const resolutionDate = issue.fields.resolutiondate ? new Date(issue.fields.resolutiondate) : new Date();
+        const resolutionTimeMs = resolutionDate.getTime() - createdDate.getTime();
+        const resolutionTimeDays = resolutionTimeMs / (1000 * 60 * 60 * 24);
+        return {
+            key: issue.key,
+            resolutionTimeDays: resolutionTimeDays.toFixed(2),
+        };
+    });
+};
+
+// Route to fetch bug resolution time data
+app.get('/bug-resolution-time/:projectId', async (req, res) => {
+    try {
+        const { projectId } = req.params;
+        const issueData = await fetchIssueData(projectId);
+        const bugResolutionTime = calculateResolutionTime(issueData);
+        res.json(bugResolutionTime);
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+const fetchIssue = async (projectId) => {
+    try {
+        const response = await axios.get(`${JIRA_API_BASE_URL}/search`, {
+            params: {
+                jql: `project = ${projectId}`,
+                maxResults: 50, // Adjust as needed
+                fields: 'issuetype, resolutiondate',
+            },
+            auth: {
+                username: USERNAME,
+                password: API_TOKEN,
+            },
+        });
+
+        return response.data.issues;
+    } catch (error) {
+        console.error('Error fetching issue data from Jira:', error);
+        throw error;
+    }
+};
+
+// Function to calculate average resolution time for each issue type
+const calculateAvgResolutionTime = (issues) => {
+    const issueTypes = {};
+    const issueTypeResolutionTime = {};
+
+    issues.forEach(issue => {
+        const issueType = issue.fields.issuetype.name;
+        const resolutionDate = issue.fields.resolutiondate;
+
+        if (!issueTypes[issueType]) {
+            issueTypes[issueType] = 0;
+            issueTypeResolutionTime[issueType] = 0;
+        }
+
+        issueTypes[issueType]++;
+        if (resolutionDate) {
+            const createdDate = new Date(issue.fields.created);
+            const resolvedDate = new Date(resolutionDate);
+            const resolutionTimeMs = resolvedDate.getTime() - createdDate.getTime();
+            issueTypeResolutionTime[issueType] += resolutionTimeMs;
+        }
+    });
+
+    const avgResolutionTime = {};
+    Object.keys(issueTypes).forEach(issueType => {
+        if (issueTypes[issueType] > 0) {
+            avgResolutionTime[issueType] = issueTypeResolutionTime[issueType] / issueTypes[issueType];
+        }
+    });
+
+    return avgResolutionTime;
+};
+
+// Route to fetch issue type data
+app.get('/issue-types-data/:projectId', async (req, res) => {
+    try {
+        const { projectId } = req.params;
+        const issueData = await fetchIssue(projectId);
+        const avgResolutionTime = calculateAvgResolutionTime(issueData);
+
+        // Calculate proportion of each issue type relative to the total number of issues
+        const totalIssues = issueData.length;
+        const issueTypeDistribution = {};
+        Object.keys(avgResolutionTime).forEach(issueType => {
+            issueTypeDistribution[issueType] = issueData.filter(issue => issue.fields.issuetype.name === issueType).length / totalIssues;
+        });
+
+        res.json({ avgResolutionTime, issueTypeDistribution });
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 // Serve static files
 app.use(express.static('public'));
 
