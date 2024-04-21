@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="d-flex">
+  <div class="sidebar col-md-2">
+    <app-sidenav></app-sidenav>
+  </div>
+  
+  <div class="content">
+    <div class="card-container mx-auto mt-3 mr-3 ml-3 mb-3 p-3 col-md-12">
+      <div class="card shadow">
+        <div class="card-header text-dark">
+          <strong>Create New Page</strong>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="createPage()">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" class="form-control" id="title" [(ngModel)]="issueData.title" name="title">
+            </div>
+            <div class="form-group">
+              <label for="content">Content:</label>
+              <textarea class="form-control" id="content" [(ngModel)]="issueData.content" name="content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Page</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

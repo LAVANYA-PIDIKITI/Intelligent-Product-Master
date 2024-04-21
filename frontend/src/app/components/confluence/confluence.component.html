@@ -1,0 +1,146 @@
+<app-navbar></app-navbar>
+
+<div class="d-flex">
+  <div class="sidebar col-md-2">
+    <app-sidenav></app-sidenav>
+  </div>
+  
+  <div class="content">
+    <div class="container mt-2">
+      <h2>Issue Actions</h2>
+      <div class="row">
+        <!-- Card for Create Page -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create Page</h5>
+              <p class="card-text">Create a new page for an issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('createPage')">Create</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Update Page -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Update Page</h5>
+              <p class="card-text">Update an existing page for an issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('updatePage')">Update</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Read Page -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Read Page</h5>
+              <p class="card-text">Read details of a specific page for an issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('readPage')">Read</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Delete Page</h5>
+                <p class="card-text">Delete a page related to an issue.</p>
+                <button class="btn btn-primary" (click)="navigateTo('deletePage')">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Specific Page</h5>
+                <p class="card-text">Search a specific page related to an issue.</p>
+                <button class="btn btn-primary" (click)="navigateTo('specificPage')">Search</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Space details</h5>
+                <p class="card-text">Get the space details.</p>
+                <button class="btn btn-primary" (click)="navigateTo('spaceDetails')">Get</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Footer Comments</h5>
+                <p class="card-text">Get Footer Comments.</p>
+                <button class="btn btn-primary" (click)="navigateTo('footerComments')">Get</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Inline Comments</h5>
+                <p class="card-text">Get Inline comments.</p>
+                <button class="btn btn-primary" (click)="navigateTo('inlineComments')">Get</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Create Comment</h5>
+                <p class="card-text">Create a comment related to an issue.</p>
+                <button class="btn btn-primary" (click)="navigateTo('createComment')">Create</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Edit Comment</h5>
+                <p class="card-text">Edit a comment related to an issue.</p>
+                <button class="btn btn-primary" (click)="navigateTo('editComment')">Edit</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Delete Comment</h5>
+                <p class="card-text">Delete a comment related to an issue.</p>
+                <button class="btn btn-primary" (click)="navigateTo('deleteComment')">Delete</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Get Attachments</h5>
+                <p class="card-text">Get all attachments related to an issue.</p>
+                <button class="btn btn-primary" (click)="navigateTo('getAttachments')">Get</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Delete Attachments</h5>
+                <p class="card-text">Delete a attachment related to an issue.</p>
+                <button class="btn btn-primary" (click)="navigateTo('deleteAttachments')">Delete</button>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>

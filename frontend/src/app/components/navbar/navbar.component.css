@@ -1,0 +1,17 @@
+.navbar {
+    background-color: #11101D;
+  }
+  
+  .navbar h4 {
+    color: #FFFFFF; /* White text color */
+  }
+  
+  .navbar-toggler-icon,
+  .btn-link {
+    color: #FFFFFF; /* White icon color */
+  }
+  
+  .stack{
+    background-color: #f09a10;
+  }
+  

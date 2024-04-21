@@ -1,18 +1,26 @@
 import { Component, ViewChild } from "@angular/core";
 
 import {
+  ChartComponent,
   ApexAxisChartSeries,
   ApexTitleSubtitle,
   ApexDataLabels,
-  ApexChart
+  ApexChart,
+  ApexPlotOptions,
+  ApexXAxis,
+  ApexGrid
 } from "ng-apexcharts";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   dataLabels: ApexDataLabels;
-  title: ApexTitleSubtitle;
+  fill: any;
   colors: any;
+  title: ApexTitleSubtitle;
+  xaxis: ApexXAxis;
+  grid: ApexGrid;
+  plotOptions: ApexPlotOptions;
 };
 @Component({
   selector: 'app-heatmap',
@@ -20,72 +28,113 @@ export type ChartOptions = {
   styleUrl: './heatmap.component.css'
 })
 export class HeatmapComponent {
-  
-  @ViewChild("chart") chart: HeatmapComponent | undefined;
+  @ViewChild("chart") chart: ChartComponent | undefined;
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {
     this.chartOptions = {
       series: [
         {
-          name: "Metric1",
-          data: this.generateData(18, {
+          name: "W1",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
         },
         {
-          name: "Metric2",
-          data: this.generateData(18, {
+          name: "W2",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
         },
         {
-          name: "Metric3",
-          data: this.generateData(18, {
+          name: "W3",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
         },
         {
-          name: "Metric4",
-          data: this.generateData(18, {
+          name: "W4",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
         },
         {
-          name: "Metric5",
-          data: this.generateData(18, {
+          name: "W5",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
         },
         {
-          name: "Metric6",
-          data: this.generateData(18, {
+          name: "W6",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
         },
         {
-          name: "Metric7",
-          data: this.generateData(18, {
+          name: "W7",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
         },
         {
-          name: "Metric8",
-          data: this.generateData(18, {
+          name: "W8",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
         },
         {
-          name: "Metric9",
-          data: this.generateData(18, {
+          name: "W9",
+          data: this.generateData(8, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "W10",
+          data: this.generateData(8, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "W11",
+          data: this.generateData(8, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "W12",
+          data: this.generateData(8, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "W13",
+          data: this.generateData(8, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "W14",
+          data: this.generateData(8, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "W15",
+          data: this.generateData(8, {
             min: 0,
             max: 90
           })
@@ -98,9 +147,40 @@ export class HeatmapComponent {
       dataLabels: {
         enabled: false
       },
-      colors: ["#008FFB"],
-      title: {
-        text: "HeatMap Chart (Single color)"
+      colors: [
+        "#F3B415",
+        "#F27036",
+        "#663F59",
+        "#6A6E94",
+        "#4E88B4",
+        "#00A7C6",
+        "#18D8D8",
+        "#A9D794",
+        "#46AF78",
+        "#A93F55",
+        "#8C5E58",
+        "#2176FF",
+        "#33A1FD",
+        "#7A918D",
+        "#BAFF29"
+      ],
+      xaxis: {
+        type: "category",
+        categories: [
+          "Lav",
+          "Monica",
+          "Nick",
+          "Ansilin",
+          "Bob",
+          "Alice",
+          "Drake",
+          "Cat"
+        ]
+      },
+      grid: {
+        padding: {
+          right: 20
+        }
       }
     };
   }
@@ -109,16 +189,14 @@ export class HeatmapComponent {
     var i = 0;
     var series = [];
     while (i < count) {
-      var x = "w" + (i + 1).toString();
       var y =
         Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
-      series.push({
-        x: x,
-        y: y
-      });
+      series.push(y);
       i++;
     }
     return series;
   }
 }
+
+

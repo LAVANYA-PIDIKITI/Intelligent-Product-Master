@@ -1,11 +1,103 @@
-<div>
-    <h2>Issues</h2>
-    <ul>
-        <li *ngFor="let issue of issues">
-            {{ issue.name }}
-        </li>
-    </ul>
-</div>
+  <app-navbar></app-navbar>
 
-<!-- Call the loadIssues() function -->
-<button (click)="loadIssues()">Load Issues</button>
+<div class="d-flex">
+  <div class="sidebar col-md-2" >
+    <app-sidenav></app-sidenav>
+  </div>
+  
+  <div class="content " >
+    <div class="container mt-2">
+      <h2>Issue Actions</h2>
+      <div class="row">
+        <!-- Card for Create Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create Issue</h5>
+              <p class="card-text">Create a new issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('createIssue')">Create</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Read Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Read Issue</h5>
+              <p class="card-text">Read details of an existing issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('readIssue')">Read</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Update Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Update Issue</h5>
+              <p class="card-text">Update an existing issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('updateIssue')">Update</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Delete Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Delete Issue</h5>
+              <p class="card-text">Delete an existing issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('deleteIssue')">Delete</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Assign Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Assign Issue</h5>
+              <p class="card-text">Assign an issue to a user.</p>
+              <button class="btn btn-primary" (click)="navigateTo('assignIssue')">Assign</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Transition Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Transition Issue</h5>
+              <p class="card-text">Transition an issue to a different status.</p>
+              <button class="btn btn-primary" (click)="navigateTo('transitionIssue')">Transition</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Send Notification -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Send Notification</h5>
+              <p class="card-text">Send a notification related to an issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('send-notification')">Send Notification</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Get Transitions -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Get Transitions</h5>
+              <p class="card-text">Retrieve available transitions for an issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('get-transitions')">Get Transitions</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>

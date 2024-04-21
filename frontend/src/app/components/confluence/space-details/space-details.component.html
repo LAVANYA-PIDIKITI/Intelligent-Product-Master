@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="form-group">
+      <label for="spaceIdInput">Enter Space ID:</label>
+      <input type="text" class="form-control" id="spaceIdInput" [(ngModel)]="spaceId">
+    </div>
+    <button class="btn btn-primary" (click)="fetchSpaceDetails()">Fetch Space Details</button>
+  
+    <div *ngIf="spaceDetails" class="card mt-3">
+      <div class="card-header">
+        <strong>Space ID:</strong> {{ spaceDetails.id }}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ spaceDetails.title }}</h5>
+        <p><strong>Status:</strong> {{ spaceDetails.status }}</p>
+        <p><strong>Space Key:</strong> {{ spaceDetails.space.key }}</p>
+        <p><strong>Space Name:</strong> {{ spaceDetails.space.name }}</p>
+        <p><strong>Space Type:</strong> {{ spaceDetails.space.type }}</p>
+        <p><strong>Created By:</strong> {{ spaceDetails.history.createdBy.displayName }}</p>
+        <p><strong>Created Date:</strong> {{ spaceDetails.history.createdDate | date }}</p>
+        <p><strong>Version Number:</strong> {{ spaceDetails.version.number }}</p>
+        <p><strong>Last Modified By:</strong> {{ spaceDetails.version.by.displayName }}</p>
+        <p><strong>Last Modified At:</strong> {{ spaceDetails.version.friendlyWhen }}</p>
+      </div>
+      <div class="card-footer">
+        <a [href]="spaceDetails._links.self" target="_blank" class="btn btn-primary">Open Space</a>
+      </div>
+    </div>
+  </div>
+  
