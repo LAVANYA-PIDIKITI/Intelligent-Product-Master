@@ -40,8 +40,8 @@ def run_python_code():
         device=device,
     )
 
-    dataset = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
-    sample = dataset[0]["audio"]
+    #dataset = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
+    #sample = dataset[0]["audio"]
 
     # Process the uploaded audio file
     audio_file = request.files['audio_file']
