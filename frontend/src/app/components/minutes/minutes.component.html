@@ -15,7 +15,7 @@
             <app-audio-track [audioSrc]="audioUrl"></app-audio-track>
             <div *ngIf="meetingMinutes">
               <h2>Meeting Minutes</h2>
-              <p>{{ meetingMinutes }}</p>
+              <div [innerHTML]="meetingMinutes"></div>
             </div>
           
         

@@ -5,56 +5,66 @@ from flask_cors import CORS
 import os
 import torch
 import subprocess
-import tensorflow as tf
-import tensorflow_hub as tf_hub
-from omegaconf import OmegaConf
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
+from datasets import load_dataset
 import shutil
 import tarfile
+from openai import OpenAI
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/run_python_code', methods=['POST'])
 def run_python_code():
-    language = 'en'  # also available 'de', 'es'
+    
+    client = OpenAI(api_key="sk-proj-qLzzw6hcHf5tfBkSfqu6T3BlbkFJQi5djL2Wqh98n1CjMIvK")
+    device = "cuda:0" if torch.cuda.is_available() else "cpu"
+    torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
-    # Load provided utils using torch.hub for brevity
-    _, decoder, utils = torch.hub.load(repo_or_dir='snakers4/silero-models', model='silero_stt', language=language)
-    (read_batch, split_into_batches,
-     read_audio, prepare_model_input) = utils
+    model_id = "distil-whisper/distil-large-v3"
 
-    # See available models
-    torch.hub.download_url_to_file('https://raw.githubusercontent.com/snakers4/silero-models/master/models.yml',
-                                   'models.yml')
-    models = OmegaConf.load('models.yml')
-    available_languages = list(models.stt_models.keys())
-    assert language in available_languages
+    model = AutoModelForSpeechSeq2Seq.from_pretrained(
+        model_id, torch_dtype=torch_dtype, low_cpu_mem_usage=True, use_safetensors=True
+    )
+    model.to(device)
 
-    # Load the actual tf model
-    torch.hub.download_url_to_file(models.stt_models.en.v2.tf, 'tf_model.tar.gz')
-    shutil.rmtree('tf_model', ignore_errors=True)
-    os.makedirs('tf_model')
-    with tarfile.open('tf_model.tar.gz', 'r:gz') as tar:
-        tar.extractall('tf_model')
-    tf_model = tf.saved_model.load('tf_model')
+    processor = AutoProcessor.from_pretrained(model_id)
+
+    pipe = pipeline(
+        "automatic-speech-recognition",
+        model=model,
+        tokenizer=processor.tokenizer,
+        feature_extractor=processor.feature_extractor,
+        max_new_tokens=128,
+        torch_dtype=torch_dtype,
+        device=device,
+    )
+
+    dataset = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
+    sample = dataset[0]["audio"]
 
     # Process the uploaded audio file
     audio_file = request.files['audio_file']
     audio_file.save('uploaded_audio.wav')
 
-    # Prepare model input
-    test_files = ['uploaded_audio.wav']
-    batches = split_into_batches(test_files, batch_size=10)
-    input = prepare_model_input(read_batch(batches[0]))
+    result = pipe("uploaded_audio.wav")
+    print(result["text"])
+    transcript = result["text"]
 
-    # TF inference
-    res = tf_model.signatures["serving_default"](tf.constant(input.numpy()))['output_0']
-    result = decoder(torch.Tensor(res.numpy())[0])
+    completion = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "system", "content": "You are an efficient meeting assistant, skilled in creating minutes of meeting from transcripts."},
+        {"role": "user", "content": "Generate minutes of meeting from the following transcript:"},
+        {"role": "user", "content": transcript}
+    ]
+    )
+
+    print(completion.choices[0].message)
 
     # Remove the uploaded audio file after processing
     os.remove('uploaded_audio.wav')
-
-    return jsonify(result)
+    return jsonify(completion.choices[0].message.content)
 
 if __name__ == '__main__':
     app.run(debug=True)

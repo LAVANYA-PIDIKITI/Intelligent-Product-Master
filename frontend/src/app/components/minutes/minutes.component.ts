@@ -23,7 +23,7 @@ export class MinutesComponent {
 
       this.http.post<any>('http://127.0.0.1:5000/run_python_code', formData).subscribe(
         (response) => {
-          this.meetingMinutes = response;
+          this.meetingMinutes = response.replace(/\n/g, '<br>');
         },
         (error) => {
           console.error('Error executing Python code:', error);
