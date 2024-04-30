@@ -11,9 +11,9 @@ app.use(cors());
 
 app.use(express.json());
 
-const JIRA_API_BASE_URL = 'https://ipm-team-e3unughe.atlassian.net/rest/api/3';
-const USERNAME = 'monica.24cs@licet.ac.in'; 
-const API_TOKEN = 'ATATT3xFfGF0Ou2XQQyTsbbc69jARExqVNd00VOLGZ8oRiPzdova8eN7QVZsmYgYEWfaODIgujVrsDS95u9AlET-6efZOql9tic1Rc3x-4BQ7EkKka0f8shrX3Q9QcBM9p5t6xTjNEVz0_mBfprR9JtUkLQPyCawi7xrAui59ua6ZSp4uQGHUzk=5BC3CA8E';
+const JIRA_API_BASE_URL = 'https://lavlav.atlassian.net/rest/api/3/';
+const USERNAME = 'lavanyapidikiti.24cs@licet.ac.in'; 
+const API_TOKEN = 'ATATT3xFfGF0KPYlo8P_XWkytRxIDGwgrDfWCF_s_de_ke8bO-hLtoEAzkX-70X3VY76F4JxMWUAfCgOSov6FFFogeGPvjnwHwnuH5VBXYvr9j9kP-IcEdDvf_v2CRqK8LB8ic78sgSrLOBrge3MaYTLhiJ1m9ahyFtCzywpIN9Ddir2EkF96nM=21240726';
 
 const base64Credentials = Buffer.from(`${USERNAME}:${API_TOKEN}`).toString('base64');
 
