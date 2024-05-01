@@ -69,7 +69,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"projectKey\":\"KAN\",\r\n    \"summary\":\"Byee\",\r\n    \"description\": {\r\n        \"type\": \"doc\",\r\n        \"version\": 1,\r\n        \"content\": [\r\n            {\r\n                \"type\": \"paragraph\",\r\n                \"content\": [\r\n                    {\r\n                        \"type\": \"text\",\r\n                        \"text\": \"This is example bug description.\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"projectKey\":\"KAN\",\r\n    \"summary\":\"working\",\r\n    \"description\": {\r\n        \"type\": \"doc\",\r\n        \"version\": 1,\r\n        \"content\": [\r\n            {\r\n                \"type\": \"paragraph\",\r\n                \"content\": [\r\n                    {\r\n                        \"type\": \"text\",\r\n                        \"text\": \"This is example bug description.\"\r\n                    }\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,7 +77,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/issues?issueId=10003",
+					"raw": "http://127.0.0.1:3000/api/issues/10013",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -88,13 +88,8 @@
 					"port": "3000",
 					"path": [
 						"api",
-						"issues"
-					],
-					"query": [
-						{
-							"key": "issueId",
-							"value": "10003"
-						}
+						"issues",
+						"10013"
 					]
 				}
 			},
@@ -187,7 +182,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/search/project=IPM",
+					"raw": "http://127.0.0.1:3000/api/issues/search/IPM",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -198,8 +193,9 @@
 					"port": "3000",
 					"path": [
 						"api",
+						"issues",
 						"search",
-						"project=IPM"
+						"IPM"
 					]
 				}
 			},
@@ -236,7 +232,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/projects/10000",
+					"raw": "http://127.0.0.1:3000/api/projects/IPM",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -248,7 +244,7 @@
 					"path": [
 						"api",
 						"projects",
-						"10000"
+						"IPM"
 					]
 				}
 			},
@@ -261,7 +257,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Project X\",\r\n    \"key\": \"PROJX\",\r\n    \"projectTypeKey\": \"business\",\r\n    \"leadAccountId\": \"61599a19198b4f00685430bd\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Project Y\",\r\n    \"key\": \"PROJY\",\r\n    \"projectTypeKey\": \"business\",\r\n    \"leadAccountId\": \"712020:63f9fdf4-55a3-4f7b-a59f-642ca1a98909\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -325,7 +321,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/projects/10003",
+					"raw": "http://127.0.0.1:3000/api/projects/10000",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -337,7 +333,7 @@
 					"path": [
 						"api",
 						"projects",
-						"10003"
+						"10000"
 					]
 				}
 			},
@@ -349,7 +345,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/issues/10008/transitions",
+					"raw": "http://127.0.0.1:3000/api/issues/10000/transitions",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -361,7 +357,7 @@
 					"path": [
 						"api",
 						"issues",
-						"10008",
+						"10000",
 						"transitions"
 					]
 				}
@@ -375,7 +371,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"transitionId\":11\r\n}",
+					"raw": "{\r\n    \"transitionId\":21\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -383,7 +379,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/issues/10008/transitions",
+					"raw": "http://127.0.0.1:3000/api/issues/10010/transitions",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -395,7 +391,7 @@
 					"path": [
 						"api",
 						"issues",
-						"10008",
+						"10010",
 						"transitions"
 					]
 				}

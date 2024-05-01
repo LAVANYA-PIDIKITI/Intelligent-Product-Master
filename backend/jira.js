@@ -21,7 +21,6 @@ const base64Credentials = Buffer.from(`${USERNAME}:${API_TOKEN}`).toString('base
 app.get('/api/issues/:projectName', async (req, res) => {
   try {
       const { projectName } = req.params;
-      console.log(projectName)
       const response = await axios.get(`${JIRA_API_BASE_URL}/search`, {
           params: {
               jql: `project=${projectName}`, 
@@ -36,7 +35,6 @@ app.get('/api/issues/:projectName', async (req, res) => {
       res.status(500).json({ message: 'Internal Server Error' }); // Sending a generic error response
   }
 });
-
 
 //Create an issue
 app.post('/api/issues', async (req, res) => {
@@ -54,7 +52,6 @@ app.post('/api/issues', async (req, res) => {
         }
       } 
     };
-    console.log(requestBody);
     const response = await axios.post(`${JIRA_API_BASE_URL}/issue`, requestBody, {
       headers: {
         'Authorization': `Basic ${base64Credentials}`,
@@ -177,18 +174,17 @@ app.post('/api/projects', async (req, res) => {
       key,
       name,
       projectTypeKey,
-      leadAccountId,
-      assigneeType
+      leadAccountId
     };
 
-    const response = await axios.post(`${JIRA_API_BASE_URL}/project`, requestBody, {
+    const response = await axios.post(`${JIRA_API_BASE_URL}project`, requestBody, {
       headers: {
         'Authorization': `Basic ${base64Credentials}`,
         'Content-Type': 'application/json'
       }
     });
 
-    res.json(response);
+    res.json(response.data);
   } catch (error) {
     console.error('Error creating project:', error);
     res.json(error);
@@ -305,7 +301,6 @@ app.get('/api/users/:username', async (req, res) => {
 app.get('/api/users/search/:query', async (req, res) => {
   try {
     const { query } = req.params;
-    console.log(query);
     const response = await axios.get(`${JIRA_API_BASE_URL}/user/search?query=${query}`, {
       headers: {
         'Authorization': `Basic ${base64Credentials}`,
@@ -318,6 +313,26 @@ app.get('/api/users/search/:query', async (req, res) => {
     res.json(error);
   }
 });
+
+//get user permissions
+app.get('/api/users/:permissionsList/permissions', async (req, res) => {
+  try {
+    const { permissionsList } = req.params;
+
+    const response = await axios.get(`${JIRA_API_BASE_URL}/mypermissions?permissions=${encodeURIComponent(permissionsList)}`, {
+      headers: {
+        'Authorization': `Basic ${base64Credentials}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error getting user permissions:', error.response.data);
+    res.status(error.response.status).json(error.response.data);
+  }
+});
+
 
 app.listen(PORT,hostname, () => {
   console.log(`Server is running on http://${hostname}:${PORT}/`);
