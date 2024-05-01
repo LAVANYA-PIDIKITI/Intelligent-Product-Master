@@ -94,7 +94,7 @@ app.put('/api/issues/:issueId', async (req, res) => {
 });
 
 // get specific issue details
-app.get('/api/issues/:issueId', async (req, res) => {
+app.get('/api/specific/issues/:issueId', async (req, res) => {
   try {
     const { issueId } = req.params;
 
