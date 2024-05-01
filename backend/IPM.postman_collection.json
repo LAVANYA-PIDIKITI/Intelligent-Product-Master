@@ -436,7 +436,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3000/api/users/BROWSE_PROJECTS%2CEDIT_ISSUES%2CADD_COMMENTS/permissions",
+					"raw": "http://127.0.0.1:3000/api/users/BROWSE_PROJECTS,EDIT_ISSUES,CLOSE_ISSUES,ASSIGN_ISSUES,DELETE_ISSUES,TRANSITION_ISSUES,EDIT_ISSUES/permissions",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -448,7 +448,7 @@
 					"path": [
 						"api",
 						"users",
-						"BROWSE_PROJECTS%2CEDIT_ISSUES%2CADD_COMMENTS",
+						"BROWSE_PROJECTS,EDIT_ISSUES,CLOSE_ISSUES,ASSIGN_ISSUES,DELETE_ISSUES,TRANSITION_ISSUES,EDIT_ISSUES",
 						"permissions"
 					]
 				}
