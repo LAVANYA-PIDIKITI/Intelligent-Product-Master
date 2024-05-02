@@ -1,1 +1,69 @@
-<p>get-tranitions works!</p>
+
+      
+  <app-navbar></app-navbar>
+
+  <div class="d-flex">
+    <div class="sidebar col-md-2" >
+      <app-sidenav></app-sidenav>
+    </div>
+    
+    <div class="content" >
+
+      <div class="card-container mx-auto mt-3 mr-3 ml-3 mb-3 p-3">
+        <div *ngFor="let issue of issues" class="card shadow" (click)="openIssueModal(issue, modalTemplate)">
+          <div class="card-header text-dark">
+            <strong>Issue Key:</strong> {{ issue.key }}
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+                <p><strong>Issue ID:</strong> {{ issue.id }}</p>
+              <p><strong>Issue Name:</strong> {{ issue.fields.summary }}</p>
+              <p><strong>Issue Type:</strong> {{ issue.fields.issuetype.name }}</p>
+              <p><strong>Priority:</strong> {{ issue.fields.priority.name }}</p>
+              <p><strong>Assignee:</strong> {{ issue.fields.assignee?.displayName || 'Unassigned' }}</p>
+              <p><strong>Reporter:</strong> {{ issue.fields.reporter.displayName }}</p>
+              <p><strong>Time Spent:</strong> {{ issue.fields.timespent || 'Not spent yet' }}</p>
+              <p class="status-text" [ngClass]="{
+                'text-success': issue.fields.status.name === 'Done',
+                'text-warning': issue.fields.status.name === 'In Progress',
+                'text-danger': issue.fields.status.name === 'To Do'
+              }">
+                <strong>Status:</strong> {{ issue.fields.status.name }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <ng-template #modalTemplate let-modal>
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">{{ selectedIssue?.key }} - Issue Details</h5>
+              <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Display transition details here -->
+              <div *ngFor="let transition of transitions">
+                <p><strong>Transition ID:</strong> {{ transition.id }}</p>
+                <p><strong>Transition Name:</strong> {{ transition.name }}</p>
+                <!-- Display other transition details here -->
+              </div>
+              <!-- Button to transition issue to a new state -->
+              <button class="btn btn-primary mt-3" (click)="transitionIssue(11)">Transition to To Do</button>
+              <button class="btn btn-primary mt-3" (click)="transitionIssue(21)">Transition to In Progress</button>
+              <button class="btn btn-primary mt-3" (click)="transitionIssue(31)">Transition to Done</button>
+            </div>
+            <div class="modal-footer">
+              <!-- Add modal footer buttons if needed -->
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      
+  
+  
+  
+  

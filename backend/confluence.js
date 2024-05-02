@@ -1,17 +1,17 @@
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-
+const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(bodyParser.json());
-
+app.use(cors());
 // Confluence API Configuration
-const CONFLUENCE_API_URL = 'https://licet-team-ipm.atlassian.net';
-const USERNAME = 'monica.24cs@licet.ac.in';
-const PASSWORD = 'ATATT3xFfGF0Ou2XQQyTsbbc69jARExqVNd00VOLGZ8oRiPzdova8eN7QVZsmYgYEWfaODIgujVrsDS95u9AlET-6efZOql9tic1Rc3x-4BQ7EkKka0f8shrX3Q9QcBM9p5t6xTjNEVz0_mBfprR9JtUkLQPyCawi7xrAui59ua6ZSp4uQGHUzk=5BC3CA8E'; // or password if you're using basic auth
+const CONFLUENCE_API_URL = 'https://lavlavlav.atlassian.net';
+const USERNAME = 'lavanyapidikiti.24cs@licet.ac.in';
+const PASSWORD = 'ATATT3xFfGF0KPYlo8P_XWkytRxIDGwgrDfWCF_s_de_ke8bO-hLtoEAzkX-70X3VY76F4JxMWUAfCgOSov6FFFogeGPvjnwHwnuH5VBXYvr9j9kP-IcEdDvf_v2CRqK8LB8ic78sgSrLOBrge3MaYTLhiJ1m9ahyFtCzywpIN9Ddir2EkF96nM=21240726'; // or password if you're using basic auth
 
 //Get page details Confluence
 app.get('/read-page/:pageId', async (req, res) => {

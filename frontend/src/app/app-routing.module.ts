@@ -25,6 +25,17 @@ import { ReadPageComponent } from './components/confluence/read-page/read-page.c
 import { SpaceDetailsComponent } from './components/confluence/space-details/space-details.component';
 import { SpecificPageComponent } from './components/confluence/specific-page/specific-page.component';
 import { UpdatePageComponent } from './components/confluence/update-page/update-page.component';
+import { CreateProjectComponent } from './components/issues/create-project/create-project.component';
+import { UpdateProjectComponent } from './components/issues/update-project/update-project.component';
+import { GetProjectComponent } from './components/issues/get-project/get-project.component';
+import { DeleteProjectComponent } from './components/issues/delete-project/delete-project.component';
+import { GetTranitionsComponent } from './components/issues/get-tranitions/get-tranitions.component';
+import { TransitionIssueComponent } from './components/issues/transition-issue/transition-issue.component';
+import { GetIssuesCountComponent } from './components/issues/get-issues-count/get-issues-count.component';
+import { UserComponent } from './components/user/user.component';
+import { SearchUserComponent } from './components/user/search-user/search-user.component';
+import { UserDetailsComponent } from './components/user/user-details/user-details.component';
+import { UserPermissionsComponent } from './components/user/user-permissions/user-permissions.component';
 const routes: Routes = [
   { path: 'issues', component: IssuesComponent },
   { path: 'stats', component: StatsComponent},
@@ -38,9 +49,9 @@ const routes: Routes = [
   { path: 'updateIssue', component: UpdateIssueComponent },
   { path: 'deleteIssue', component: DeleteIssueComponent },
   { path: 'assignIssue', component: StackoverflowComponent },
-  { path: 'transitionIssue', component: StackoverflowComponent },
+  { path: 'transitionIssue', component: TransitionIssueComponent },
   { path: 'notificationIssue', component: StackoverflowComponent },
-  { path: 'getTransitions', component: StackoverflowComponent },
+  { path: 'getTransitions', component: GetTranitionsComponent },
   { path: 'createComment', component: CreateCommentComponent },
   { path: 'createPage', component: CreatePageComponent },
   { path: 'deleteAttachments', component: DeleteAttachmentsComponent },
@@ -55,6 +66,16 @@ const routes: Routes = [
   { path: 'specificPage', component: SpecificPageComponent },
   { path: 'updatePage', component: UpdatePageComponent },
   { path: 'confluence', component: ConfluenceComponent },
+  { path: 'createProject', component: CreateProjectComponent },
+  { path: 'updateProject', component: UpdateProjectComponent },
+  { path: 'getProject', component: GetProjectComponent },
+  { path: 'deleteProject', component: DeleteProjectComponent },
+  { path: 'getIssuesCount', component: GetIssuesCountComponent },
+  { path: 'user', component: UserComponent},
+  { path: 'searchUser', component: SearchUserComponent },
+  { path: 'userDetails', component: UserDetailsComponent },
+  { path: 'userPermissions', component: UserPermissionsComponent },
+
 
   
 ];

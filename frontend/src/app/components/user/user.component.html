@@ -1,1 +1,49 @@
-<p>user works!</p>
+<app-navbar></app-navbar>
+
+<div class="d-flex">
+  <div class="sidebar col-md-2" >
+    <app-sidenav></app-sidenav>
+  </div>
+  
+  <div class="content " >
+    <div class="container mt-2">
+      <h2>Issue Actions</h2>
+      <div class="row">
+        <!-- Card for Create Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Search User</h5>
+              <p class="card-text">Create a new issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('searchUser')">Create</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Read Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Get User details</h5>
+              <p class="card-text">Read details of an existing issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('userDetails')">Read</button>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Card for Update Issue -->
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Check User Permissions</h5>
+              <p class="card-text">Update an existing issue.</p>
+              <button class="btn btn-primary" (click)="navigateTo('userPermissions')">Update</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  
+  </div>
+</div>

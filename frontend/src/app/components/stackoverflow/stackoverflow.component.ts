@@ -24,7 +24,7 @@ export class StackoverflowComponent  {
       return;
     }
 
-    const apiUrl = `http://127.0.0.1:3000/search/${this.query}`;
+    const apiUrl = `http://127.0.0.1:3002/search/${this.query}`;
     this.http.get<any[]>(apiUrl).subscribe(
       (data) => {
         this.answers = data;

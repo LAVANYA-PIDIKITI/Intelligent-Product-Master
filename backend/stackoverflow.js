@@ -2,22 +2,27 @@ const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors');
+const NodeCache = require('node-cache');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 const STACK_OVERFLOW_API_KEY = 'FQBiDGX1lw9B6eZ2)BK6SA((';
+const cache = new NodeCache({ stdTTL: 6000 }); 
 
 app.use(cors());
-
-// Middleware to parse JSON requests
 app.use(express.json());
 
-// Route to handle queries
 app.get('/search/:query', async (req, res) => {
   try {
     const { query } = req.params;
 
-    // Make a request to the Stack Overflow API to search for relevant questions
+    // Check if the response is cached
+    const cachedResponse = cache.get(query);
+    if (cachedResponse) {
+      console.log(`Using cached response for query: ${query}`);
+      return res.json(cachedResponse);
+    }
+
     const questionsResponse = await axios.get('https://api.stackexchange.com/2.3/search', {
       params: {
         key: STACK_OVERFLOW_API_KEY,
@@ -28,10 +33,9 @@ app.get('/search/:query', async (req, res) => {
       }
     });
 
-    // Extract question IDs from the response
     const questionIds = questionsResponse.data.items.map(item => item.question_id);
 
-    // Fetch answers for each question and order by votes
+    // Use Promise.allSettled for concurrent requests
     const answersPromises = questionIds.map(async (questionId) => {
       const answersResponse = await axios.get(`https://api.stackexchange.com/2.3/questions/${questionId}/answers`, {
         params: {
@@ -39,29 +43,30 @@ app.get('/search/:query', async (req, res) => {
           site: 'stackoverflow',
           order: 'desc',
           sort: 'votes',
-          filter: 'withbody' // Include answer body in the response
+          filter: 'withbody'
         }
       });
 
-      // Extract relevant information from the answers response
       const answers = answersResponse.data.items.map(item => {
-        // Load answer HTML into Cheerio
         const $ = cheerio.load(item.body);
-        // Extract text content of the answer
         const answerText = $.root().text().trim();
         return {
           ownerName: item.owner.display_name,
-          answer: answerText
+          answer: answerText,
+          profileimage: item.owner.profile_image
         };
       });
       return answers;
     });
 
-    // Wait for all answers to be fetched
-    const allAnswers = await Promise.all(answersPromises);
+    const allAnswers = await Promise.allSettled(answersPromises);
+    const flattenedAnswers = allAnswers
+      .filter(promiseResult => promiseResult.status === 'fulfilled')
+      .map(promiseResult => promiseResult.value)
+      .flat();
 
-    // Flatten the array of arrays into a single array of answers
-    const flattenedAnswers = allAnswers.flat();
+    // Cache the response with the query as the key
+    cache.set(query, flattenedAnswers);
 
     res.json(flattenedAnswers);
   } catch (error) {
@@ -70,7 +75,6 @@ app.get('/search/:query', async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(PORT,'0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
 });

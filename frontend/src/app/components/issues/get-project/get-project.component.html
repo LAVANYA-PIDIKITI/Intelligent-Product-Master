@@ -1,1 +1,56 @@
-<p>get-project works!</p>
+<!-- get-project.component.html -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let project of projects">
+      <div class="card">
+        <img [src]="project.avatarUrls['48x48']" class="card-img-top" alt="Project Avatar">
+        <div class="card-body">
+          <h5 class="card-title">{{ project.name }}</h5>
+          <p class="card-text">Key: {{ project.key }}</p>
+          <p class="card-text">Project Type: {{ project.projectTypeKey }}</p>
+          <button class="btn btn-primary" (click)="openProjectModal(project, modalTemplate)">View Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Template -->
+<ng-template #modalTemplate let-modal>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Project Details - {{ selectedProject?.name }}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeProjectModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Name:</strong> 
+          <span *ngIf="editingName">
+            <input type="text" [ngModel]="selectedProject?.name" (ngModelChange)="selectedProject && (selectedProject.name = $event)">
+          </span>
+          <ng-container *ngIf="!editingName">{{ selectedProject?.name }}</ng-container>
+        </p>
+        <p><strong>Key:</strong> {{ selectedProject?.key }}</p>
+        <p><strong>Type:</strong> {{ selectedProject?.projectTypeKey }}</p>
+        <p><strong>Description:</strong> 
+          <span *ngIf="editingDescription">
+            <input type="text" [ngModel]="selectedProject?.description" (ngModelChange)="selectedProject && (selectedProject.description = $event)">
+          </span>
+          <ng-container *ngIf="!editingDescription">{{ selectedProject?.description }}</ng-container>
+        </p>
+        <!-- Add more project details here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="editProject()">Edit</button>
+        <button type="button" class="btn btn-success" *ngIf="editingName || editingDescription" (click)="saveProject()">Save</button>
+        <button type="button" class="btn btn-danger" *ngIf="selectedProject" (click)="deleteProject(selectedProject)">Delete</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+
+

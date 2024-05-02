@@ -1,29 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
 
 @Component({
   selector: 'app-columnchart',
   templateUrl: './columnchart.component.html',
-  styleUrl: './columnchart.component.css'
+  styleUrls: ['./columnchart.component.css']
 })
-export class ColumnchartComponent {
-  chartOptions = {
-    title:{
-      text: "Angular Column Chart"  
-    },
-    animationEnabled: true,
-    data: [{        
-      type: "column",
-      dataPoints: [
-        { x: 10, y: 71 },
-        { x: 20, y: 55 },
-        { x: 30, y: 50 },
-        { x: 40, y: 65 },
-        { x: 50, y: 95 },
-        { x: 60, y: 68 },
-        { x: 70, y: 28 },
-        { x: 80, y: 34 },
-        { x: 90, y: 14 }
-      ]
-    }]
-  }	
-}    
+export class ColumnchartComponent implements OnInit {
+  chartOptions: any;
+
+  ngOnInit() {
+    axios.get('http://127.0.0.1:3003/bug-resolution-time/AG')
+      .then(response => {
+        const bugData = response.data;
+
+        // Prepare data for dataPoints
+        const dataPoints = bugData.map((bug: { key: any; resolutionTimeDays: string; }) => ({
+          label: bug.key,
+          y: parseFloat(bug.resolutionTimeDays)
+        }));
+
+        // Set chart options
+        this.chartOptions = {
+          title: {
+            text: 'Bug Resolution Time'
+          },
+          animationEnabled: true,
+          axisY: {
+            title: 'Resolution Time (Days)'
+          },
+          data: [{
+            type: 'column',
+            dataPoints: dataPoints
+          }]
+        };
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
+}

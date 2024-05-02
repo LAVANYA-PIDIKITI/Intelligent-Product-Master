@@ -1,1 +1,32 @@
-<p>user-details works!</p>
+<div class="card">
+    <div class="card-header">
+      <h5 class="card-title">User Details</h5>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="accountIdInput">Enter Account ID:</label>
+        <input type="text" class="form-control" id="accountIdInput" [(ngModel)]="accountId">
+      </div>
+      <button class="btn btn-primary" (click)="getUserDetails()">Get User Details</button>
+  
+      <div *ngIf="userDetails" class="mt-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <img [src]="userDetails.avatarUrls['16x16']" alt="User Avatar" class="img-fluid rounded-circle">
+              </div>
+              <div class="col-md-9">
+                <h5 class="card-title">{{ userDetails.displayName }}</h5>
+                <p class="card-text">{{ userDetails.emailAddress }}</p>
+                <p class="card-text">Account ID: {{ userDetails.accountId }}</p>
+                <p class="card-text">Time Zone: {{ userDetails.timeZone }}</p>
+                <!-- Add more details here as needed -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

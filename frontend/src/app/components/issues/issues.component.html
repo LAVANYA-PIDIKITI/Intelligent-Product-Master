@@ -57,8 +57,8 @@
         <div class="col-md-4 mb-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Assign Issue</h5>
-              <p class="card-text">Assign an issue to a user.</p>
+              <h5 class="card-title">Search Issue</h5>
+              <p class="card-text">Search an issue of a user.</p>
               <button class="btn btn-primary" (click)="navigateTo('assignIssue')">Assign</button>
             </div>
           </div>
@@ -79,20 +79,64 @@
         <div class="col-md-4 mb-3">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Send Notification</h5>
-              <p class="card-text">Send a notification related to an issue.</p>
-              <button class="btn btn-primary" (click)="navigateTo('send-notification')">Send Notification</button>
+              <h5 class="card-title">Read Project </h5>
+              <p class="card-text">Get all the projects available</p>
+              <button class="btn btn-primary" (click)="navigateTo('getProject')">Send Notification</button>
             </div>
           </div>
         </div>
-    
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create Project</h5>
+              <p class="card-text">Create a project</p>
+              <button class="btn btn-primary" (click)="navigateTo('createProject')">Create Project</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Update Project</h5>
+              <p class="card-text">Update the project details.</p>
+              <button class="btn btn-primary" (click)="navigateTo('updateProject')">Update Project</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Delete Project</h5>
+              <p class="card-text">Delete the project</p>
+              <button class="btn btn-primary" (click)="navigateTo('deleteProject')">Delete Project</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Get Issue Count</h5>
+              <p class="card-text">Get the number of issues available</p>
+              <button class="btn btn-primary" (click)="navigateTo('getIssuesCount')">Get Issue Count</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Get Project details</h5>
+              <p class="card-text">Retrieve available project details.</p>
+              <button class="btn btn-primary" (click)="navigateTo('get-transitions')">Get Project details</button>
+            </div>
+          </div>
+        </div>
         <!-- Card for Get Transitions -->
         <div class="col-md-4 mb-3">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Get Transitions</h5>
               <p class="card-text">Retrieve available transitions for an issue.</p>
-              <button class="btn btn-primary" (click)="navigateTo('get-transitions')">Get Transitions</button>
+              <button class="btn btn-primary" (click)="navigateTo('getTransitions')">Get Transitions</button>
             </div>
           </div>
         </div>

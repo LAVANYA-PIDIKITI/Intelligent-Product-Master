@@ -71,6 +71,7 @@ import { UserComponent } from './components/user/user.component';
 import { UserDetailsComponent } from './components/user/user-details/user-details.component';
 import { SearchUserComponent } from './components/user/search-user/search-user.component';
 import { UserPermissionsComponent } from './components/user/user-permissions/user-permissions.component';
+import { GetIssuesCountComponent } from './components/issues/get-issues-count/get-issues-count.component';
 
 
 
@@ -131,6 +132,7 @@ import { UserPermissionsComponent } from './components/user/user-permissions/use
     UserDetailsComponent,
     SearchUserComponent,
     UserPermissionsComponent,
+    GetIssuesCountComponent,
   ],
   imports: [
     BrowserModule,

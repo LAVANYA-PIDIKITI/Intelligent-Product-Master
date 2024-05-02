@@ -1,1 +1,26 @@
-<p>user-permissions works!</p>
+<div class="card">
+    <div class="card-header">
+      <h5 class="card-title">User Permissions</h5>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-primary mb-3" (click)="fetchPermissions()">Fetch Permissions</button>
+      
+      <div class="row" *ngIf="permissionsLoaded">
+        <div class="col-md-4" *ngFor="let permission of permissions">
+          <div class="card permission-card mb-3">
+            <div class="card-body">
+              <h6 class="card-title">{{ permission.name }}</h6>
+              <p class="card-text"><strong>Key:</strong> {{ permission.key }}</p>
+              <p class="card-text"><strong>Description:</strong> {{ permission.description }}</p>
+              <p class="card-text"><strong>Have Permission:</strong> {{ permission.havePermission ? 'Yes' : 'No' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="!permissionsLoaded && permissionsError" class="alert alert-danger" role="alert">
+        Failed to fetch permissions. Please try again later.
+      </div>
+    </div>
+  </div>
+  

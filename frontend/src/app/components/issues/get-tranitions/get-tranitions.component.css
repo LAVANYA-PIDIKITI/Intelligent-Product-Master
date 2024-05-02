@@ -1,0 +1,25 @@
+/* issues.component.css */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed */
+    gap: 10px; /* Adjust the gap between cards */
+  }
+  
+  .card {
+    width: 30%; /* Adjust the width of each card */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    margin-bottom: 8px;
+  }
+  
